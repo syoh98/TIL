@@ -8,7 +8,7 @@ ex) 키보드로부터 데이터 입력 받기, ```System.out.println()```을 �
    
 ## 💻 바이트기반 스트림   
 스트림은 바이트 단위로 데이터를 전송   
-**-> 바이트 기반이라는 것은 입출력의 단위가 1byte라는 것**
+**-> 바이트 기반이라는 것은 입출력의 단위가 1byte라는 것**   
 <img src="https://github.com/syoh98/TIL/assets/76934280/bdf86cb8-b9ce-4371-9790-fda104397dd4" width="600"/></br>   
 * InputStream, OutputStream
 * ByteArrayInputStream, ByteArrayOutputStream
