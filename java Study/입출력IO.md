@@ -20,7 +20,21 @@ ex) 키보드로부터 데이터 입력 받기, ```System.out.println()```을 �
 -> 따라서 스트림을 먼저 생성한 후 보조스트림을 생성해야함
 * 바이트기반 보조스트림
   * FilterInputStream, FilterOutputStream
+    * InputStream/OutputStream의 자손이면서 모든 보조스트림의 조상
+    * 생성자
+      * ``` protected FilterInputStream(InputStream in) ```   
+        ``` public FilterOutputStream(OutputStream in) ```    
   * BufferedInputStream, BufferedOutputStream
+    * 스트림의 입출력 효율을 높이기 위해 버퍼를 사용하는 보조스트림
+    * 한바이트씩 입출력하는 것보다 버퍼(바이트배열)를 이용해서 한 번에 여러 바이트를 입출력하는 것이 빠르기 때문에 대부분의 입출력 작업에 사용
+    * 생성자
+      * ``` BufferedInputStream(InputStream in, int size) ```: 지정된 크기의 버퍼를 갖는 BufferedInputStream 인스턴스 생성   
+      * ``` BufferedInputStream(InputStream in) ```: 버퍼의 크기를 지정해주지 않으므로 기본적으로 8192byte크기의 버퍼 생성   
+      * ``` BufferedOutputStream(OutputStream out, int size) ```: BufferedInputStream과 동일
+      * ``` BufferedOutputStream(OutputStream out) ```: BufferedInputStream과 동일
+    * 메서드
+      * ``` flush() ```: 버퍼의 모든 내용을 출력소스에 출력한 다음, 버퍼를 비움
+      * ``` close() ```: flush() 호출 후, BufferedOutputStream 인스턴스가 사용하던 모든 자원 반환
   * DataInputStream, DataOutputStream
   * SequenceInputStream
   * PrintStream
