@@ -50,4 +50,8 @@ java에서는 한 문자를 의미하는 **char형이 1byte가 아닌 2byte이�
 * Reader, Writer
 * FileReader, FileWriter
 * PipedReader, PipedWriter
-* StringReader, StringWriter
+* StringReader, StringWriter   
+
+<h3>💻 정리 </h3>
+<img src="https://github.com/syoh98/TIL/assets/76934280/9416cfc9-8e01-468e-b2d2-fd37891985f6" width="600"/></br>
+
