@@ -23,8 +23,8 @@ free(s); // 메모리 해제
 </br>
 
 ### 🤔 해제할 동적 메모리 영역이 무엇인지 어떻게 판단할까?
-**GC를 구현한 알고리즘(java/javascript), Mark And Sweep**
-![image](https://github.com/syoh98/TIL/assets/76934280/548525e9-3ffa-445f-a273-115652ce3325)
+**GC를 구현한 알고리즘(java/javascript), Mark And Sweep**   
+<img src="https://github.com/syoh98/TIL/assets/76934280/548525e9-3ffa-445f-a273-115652ce3325" width="700"/></br>
 Root set은
 * JVM 메모리의 Stack 로컬 변수에 대한 참조
 * Method Area에 저장된 static 변수에 대한 참조
@@ -35,7 +35,7 @@ Root set은
 </br>
 
 ### 🤔 GC는 어떻게 동작할까?(JVM의 Heap 영역)
-![image](https://github.com/syoh98/TIL/assets/76934280/8a2326c8-a2b2-418b-ae30-a10de7310cae)
+<img src="https://github.com/syoh98/TIL/assets/76934280/8a2326c8-a2b2-418b-ae30-a10de7310cae" width="800"/></br>
 JVM에서 Heap 영역은 Young generation, Old generation으로 나뉜다.   
 Young generation에서 발생하는 GC는 minor gc, Old generation에서 발생하는 GC는 major gc이다.   
 Young generation은   
@@ -50,3 +50,26 @@ java 8에서는 Parallel GC 방식 사용 기준 `age-bit`가 15가 되면 promo
 
 ### 🤔 그럼 왜 Heap 메모리 구조를 나누어(Young generation/Old generation) 관리할까?
 GC 설계자들이 어플리케이션을 분석했을 때 대부분의 할당된 객체가 수명이 짧아 금방 GC의 대상이 되었다. 따라서 **메모리의 특정 부분만 GC를 수행하여 GC 비용을 줄인다.**
+
+### 🤔 GC를 구현한 알고리즘은 무엇이 있을까?
+1. Serial GC   
+   <img src="https://github.com/syoh98/TIL/assets/76934280/1401f837-8bad-44f8-a8b4-877965344e37" width="300"/></br>
+   * 하나의 쓰레드로 GC를 실행하기 때문에 STW 시간이 길다.
+   * 싱글 쓰레드 환경 및 Heap이 매우 작을 때 사용한다.    
+2. Parallel GC   
+   <img src="https://github.com/syoh98/TIL/assets/76934280/f63ff872-4bfb-44e3-b52d-328c35e2a1dc" width="300"/></br>
+   * 여러 개의 쓰레드로 GC를 실행하기 때문에 `Serial GC`보다 STW 시간이 짧다.
+   * 멀티코어 환경에서 어플리케이션 처리속도를 향상시키기 위해 사용된다.
+   * Java 8에서 기본으로 쓰이는 GC 방식이다.   
+3. Concurrent Mark-Sweep(CMS)   
+   <img src="https://github.com/syoh98/TIL/assets/76934280/71b443a6-3633-47fa-8226-021b26ce8ab0" width="400"/></br>
+   * STW 최소화를 위해 고안된 방식이다.
+   * GC 작업을 어플리케이션 쓰레드와 동시에 실행해서 STW 시간을 최소화한다.
+   * 메모리와 CPU를 많이 사용하고, Mark-And-Sweep 과정 이후 메모리 파편화를 해결하는 Compaction이 기본적으로 제공되지 않는 단점이 존재한다.
+   * G1 GC 등장에 따라 Deprecated됐다.   
+4. G1 GC   
+   <img src="https://github.com/syoh98/TIL/assets/76934280/f0b3cb54-532b-45ae-9e6a-a5b52e2fdbd7" width="600"/></br>
+   * G1은 Gaebage First의 줄임말이다.
+   * Heap을 일정 크기의 Region으로 나누어 어떤 영역은 Young Generation, 어떤 영역은 Old Generation으로 사용한다.
+   * 런타임에 G1 GC가 필요에 따라 영역별 Region 개수를 튜닝한다. 그에 따라 STW를 최소화 할 수 있었다.
+   * java 9 이상부터는 G1 GC가 기본 GC 실행방식으로 사용된다.
