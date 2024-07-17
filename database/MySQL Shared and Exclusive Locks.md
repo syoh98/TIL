@@ -35,6 +35,12 @@
 ## ✏️ 정리
 * 비관적락(shared lock, exclusive lock)을 사용하여 `예약`같은 행위를 구현할 경우, exclusive lock을 획득하도록 하면 된다. 그러면 해당 트랜잭션을 커밋하기 전까지는 락이 유지가 되는 것이기 때문이다.
 * FOR SHARE 또는 FOR UPDATE 수행 후 commit 또는 rollback을 수행하기 전 즉, 트랜잭션이 끝나기 전까지가 락의 구역이다.
+* 비관적 락의 장점과 단점
+  * 장점: 데이터의 일관성을 보장한다.
+  * 단점: 성능 저하와 데드락의 발생 가능성이 높다.
+* 위에서 진행한 테스트를 바탕으로 해당 표를 도출할 수 있다.
+  ![image](https://github.com/user-attachments/assets/4720da93-acd2-421e-b691-0b1e733c476d)
+
 </br></br></br>
 
 * 참고
