@@ -7,4 +7,4 @@
 * 토비의 스프링 3.1
 * Real MySQL 8.0 (1)
 * Real MySQL 8.0 (2)
-* 단위 테스트
+* 단위 테스트(Unit Testing Principles, Practices, and Patterns)
